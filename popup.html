@@ -1,36 +1,60 @@
 <html>
-  <head>
-    <title>Popup</title>
-    <style>
-      body {
-        background-color: #fff;
-        color: #000;
-        /* min-width: 250px; */
-      }
-      .main {
-        padding: 10px 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
 
-      .lowecaseBtn {
-        background-color: #000;
-        color: #fff;
-        padding: 10px 20px;
-        font-weight: bold;
-        cursor: pointer;
-      }
+<head>
+  <title>Popup</title>
+  <style>
+    body {
+      background-color: #fff;
+      color: #000;
+      min-width: 250px;
+    }
 
-      .lowerit {
-        text-transform: lowercase;
-      }
-    </style>
-  </head>
-  <body>
-    <section class="main">
-      <button id="lowercaseBtn" class="lowecaseBtn">DOWNCASE</button>
-      <script src="content.js"></script>
-    </section>
-  </body>
+    .main {
+      padding: 10px 5px;
+      display: flex;
+      /* align-items: center; */
+      justify-content: center;
+      /* min-width: 200px; */
+      flex-direction: column;
+
+    }
+
+    .main h1 {
+      margin: 0;
+    }
+
+
+    .lowecaseBtn,
+    .toggleBtn {
+      background-color: #000;
+      color: #fff;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 30px;
+      border: none;
+      font-weight: 300;
+    }
+
+    #excludedListLink {
+      color: #000;
+      font-size: 11px;
+      cursor: pointer;
+      margin: 0px;
+      text-decoration: underline;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="main">
+    <h1>lil downcase</h1>
+    <p>All text on this page has been converted to lowercase.</p>
+    <button id="toggleBtn" class="toggleBtn">Exclude this site</button>
+    <p id="excludedListLink">What's this?</p>
+    <script src="popup.js"></script>
+  </section>
+</body>
+
 </html>

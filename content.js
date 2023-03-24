@@ -1,41 +1,25 @@
 // document.getElementsByTagName("body")[0].style.backgroundColor = "red";
-document.getElementsByTagName("body")[0].style.textTransform = "lowercase";
+// document.getElementsByTagName("body")[0].style.textTransform = "lowercase";
 
-// const styleEl = `<style>
-//     .lowerit {
-//       text-transform: lowercase;
-//     }
-//   </style>`;
-// // document.getElementsByTagName("head")[0].innerHTML += styleEl;
+chrome.storage.sync.get("excludedWebsites", (data) => {
+  const excludedWebsites = data.excludedWebsites || [];
+  const domain = window.location.hostname;
 
-// const globalStyleEl = `<style>
-//     * {
-//       text-transform: lowercase !important;
-//     }
-//   </style>`;
+  const isExcluded = excludedWebsites.some((excludedDomain) => {
+    return domain.startsWith(excludedDomain);
+  });
 
-// function setDowncase() {
-//   // document.getElementsByTagName("head")[0].innerHTML += globalStyleEl;
-//   // document.getElementsByTagName("body")[0].classList.add("lowerit");
+  if (!isExcluded) {
+    walk(document.body);
+  }
+});
 
-//   document.getElementsByTagName("html")[0].style.cssText +=
-//     "text-transform: lowercase !important";
-// }
-
-// // var lowercaseBtn = document.getElementById("lowercaseBtn");
-// // lowercaseBtn.addEventListener("click", async () => {
-// //   let [tab] = await chrome.tabs.query({
-// //     active: true,
-// //     currentWindow: true,
-// //   });
-// //   chrome.scripting.executeScript({
-// //     target: { tabId: tab.id },
-// //     function: setDowncase,
-// //   });
-// // });
-
-// chrome.runtime.onMessage.addListener((message) => {
-//   if (message === "toggleCase") {
-//     setDowncase();
-//   }
-// });
+function walk(node) {
+  if (node.nodeType === Node.TEXT_NODE) {
+    node.textContent = node.textContent.toLowerCase();
+  } else {
+    for (let child of node.childNodes) {
+      walk(child);
+    }
+  }
+}
