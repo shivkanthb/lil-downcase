@@ -1,5 +1,4 @@
 // document.getElementsByTagName("body")[0].style.backgroundColor = "red";
-// document.getElementsByTagName("body")[0].style.textTransform = "lowercase";
 
 chrome.storage.sync.get("excludedWebsites", (data) => {
   const excludedWebsites = data.excludedWebsites || [];
@@ -10,6 +9,7 @@ chrome.storage.sync.get("excludedWebsites", (data) => {
   });
 
   if (!isExcluded) {
+    document.getElementsByTagName("body")[0].style.textTransform = "lowercase";
     walk(document.body);
   }
 });

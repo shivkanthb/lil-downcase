@@ -14,15 +14,25 @@
     "48": "icons/icon-48.png",
     "128": "icons/icon-128.png"
   },
-  "background": {
-    "service_worker": "background.js"
-  },
   "content_scripts": [
     {
-      "matches": ["https://*/*", "http://*/*"],
-      "js": ["content.js"]
+      "matches": [
+        "https://*/*",
+        "http://*/*"
+      ],
+      "js": [
+        "content.js"
+      ]
     }
   ],
-  "permissions": ["tabs", "scripting", "activeTab", "contextMenus", "storage"],
-  "host_permissions": ["https://*/*", "http://*/*"]
+  "permissions": [
+    "tabs",
+    "scripting",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ]
 }
