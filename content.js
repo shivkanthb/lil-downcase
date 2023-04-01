@@ -10,9 +10,15 @@ chrome.storage.sync.get("excludedWebsites", (data) => {
 
   if (!isExcluded) {
     document.getElementsByTagName("body")[0].style.textTransform = "lowercase";
-    walk(document.body);
+    if (!isGoogleSearch(domain, window.location.pathname)) {
+      walk(document.body);
+    }
   }
 });
+
+function isGoogleSearch(domain, path) {
+  return domain === 'www.google.com' && path.startsWith('/search');
+}
 
 function walk(node) {
   if (node.nodeType === Node.TEXT_NODE) {
